@@ -1,8 +1,8 @@
 const colorSelectButtons = document.querySelectorAll(".color-select");
+const strokeWidthSelector = document.getElementById("stroke-width-selector");
 const undoButton = document.getElementById("undo-button");
 const clearButton = document.getElementById("clear-button");
 const colorPicker = document.getElementById("color-picker");
-const strokeWidthSelector = document.getElementById("stroke-width-selector");
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
@@ -21,7 +21,9 @@ context.fillRect(0, 0, canvas.width, canvas.height);
 
 function start(e) {
   e.preventDefault();
+
   isDrawing = true;
+
   context.beginPath();
   context.moveTo(
     e.clientX - canvas.offsetLeft,
@@ -29,15 +31,27 @@ function start(e) {
   )
 }
 
-function draw(e) {
-  e.preventDefault();
-  if (!isDrawing) return;
+function setLine(e) {
+  let x = e?.clientX;
+  let y = e?.clientY;
+
+  if (e.type === "touchmove") {
+    x = [...e.touches][0].clientX;
+    y = [...e.touches][0].clientY;
+  }
 
   context.lineTo(
-    e.clientX - canvas.offsetLeft,
-    e.clientY - canvas.offsetTop,
+    x - canvas.offsetLeft,
+    y - canvas.offsetTop,
   );
+}
+
+function draw(e) {
+  e.preventDefault();
+
+  if (!isDrawing) return;
   
+  setLine(e);
   context.strokeStyle = strokeColor;
   context.lineWidth = strokeWidth;
   context.lineCap = "round";
@@ -75,17 +89,6 @@ function undoLastDrawing() {
   context.putImageData(drawings[index], 0, 0)
 }
 
-// Mobile devices
-canvas.addEventListener("touchstart", start);
-canvas.addEventListener("touchmove", draw);
-canvas.addEventListener("touchend", stop);
-
-// Desktop devices
-canvas.addEventListener("mousedown", start);
-canvas.addEventListener("mousemove", draw);
-canvas.addEventListener("mouseout", stop);
-canvas.addEventListener("mouseup", stop);
-
 // Undo and Clear Buttons
 undoButton.addEventListener("click", undoLastDrawing)
 clearButton.addEventListener("click", clearCanvas)
@@ -93,7 +96,9 @@ clearButton.addEventListener("click", clearCanvas)
 // Color Select Buttons
 colorSelectButtons.forEach((button) => {
   const color = button.style.backgroundColor;
-  button.addEventListener("click", () => strokeColor = color)
+  button.addEventListener("click", () => {
+    strokeColor = color;
+  })
 })
 
 // Color Input
@@ -115,3 +120,24 @@ window.addEventListener("resize", () => {
 
   if (index >= 0) context.putImageData(drawings[index], 0, 0);
 })
+
+const canvasListeners = [
+  {
+    events: ["touchstart", "mousedown"],
+    handler: start,
+  },
+  {
+    events: ["touchmove", "mousemove"],
+    handler: draw,
+  },
+  {
+    events: ["touchend", "touchcancel", "mouseout", "mouseup"],
+    handler: stop,
+  },
+];
+
+canvasListeners.forEach(({ events, handler }) => {
+  events.forEach((event) => {
+    canvas.addEventListener(event, handler);
+  })
+});
