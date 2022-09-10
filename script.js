@@ -6,11 +6,10 @@ const strokeWidthSelector = document.getElementById("stroke-width-selector");
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
-const aspectRatio = 16 / 9;
-canvas.width = window.innerWidth - 3 * 16;
-canvas.height = canvas.width * (1 / aspectRatio);
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-const defaultCanvasColor = "white";
+const defaultCanvasColor = "transparent";
 let strokeColor = "black";
 let strokeWidth = "10";
 let isDrawing = false;
@@ -33,10 +32,6 @@ function start(e) {
 function draw(e) {
   e.preventDefault();
   if (!isDrawing) return;
-
-  console.log({ offsetLeft: canvas.offsetLeft, offsetTop: canvas.offsetTop, });
-
-  console.log(e)
 
   context.lineTo(
     e.clientX - canvas.offsetLeft,
@@ -113,9 +108,10 @@ strokeWidthSelector.addEventListener("input", (e) => {
 
 // Handle window resize
 window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth - 4 * 16;
-  canvas.height = canvas.width * (1 / aspectRatio);
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
   context.fillStyle = defaultCanvasColor;
   context.fillRect(0, 0, canvas.width, canvas.height);
-  context.putImageData(drawings[index], 0, 0);
+
+  if (index >= 0) context.putImageData(drawings[index], 0, 0);
 })

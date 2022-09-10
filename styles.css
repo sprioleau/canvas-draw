@@ -10,11 +10,11 @@ body {
   line-height: 1.5;
   color: #fff;
   background: #242424;
-  padding: 1.5rem;
-  display: flex;
+  /* display: flex;
   gap: 1em;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
+  position: relative;
 }
 
 h1 {
@@ -24,15 +24,19 @@ h1 {
 
 #canvas {
   display: block;
-  border: 1px solid #fff;
-  aspect-ratio: 16/9;
 }
 
 .action-row {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 1em;
+  position: absolute;
+  bottom: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
 button {
