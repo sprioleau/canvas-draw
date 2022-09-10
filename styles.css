@@ -1,0 +1,50 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Avenir, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+  background: #242424;
+  padding: 2rem;
+}
+
+#canvas {
+  display: block;
+  margin: 1rem auto;
+  margin-top: 2rem;
+  border: 1px solid #fff;
+  aspect-ratio: 16/9;
+}
+
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  min-height: 2.25rem;
+  font-size: 0.9em;
+}
+
+input[type="color"] {
+  padding: 0;
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  min-height: 2.25rem;
+  font-size: 0.9em;
+}
