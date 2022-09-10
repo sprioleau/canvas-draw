@@ -10,13 +10,20 @@ body {
   line-height: 1.5;
   color: #fff;
   background: #242424;
-  padding: 2rem;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 0;
 }
 
 #canvas {
   display: block;
-  margin: 1rem auto;
-  margin-top: 2rem;
   border: 1px solid #fff;
   aspect-ratio: 16/9;
 }
@@ -24,6 +31,7 @@ body {
 .action-row {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1em;
 }
 
@@ -36,6 +44,11 @@ button {
   cursor: pointer;
   min-height: 2.25rem;
   font-size: 0.9em;
+  border-radius: 100vmax;
+}
+
+input[type="range"] {
+  accent-color: hsla(200, 100%, 50%, 0.9);
 }
 
 input[type="color"] {
@@ -47,4 +60,5 @@ input[type="color"] {
   cursor: pointer;
   min-height: 2.25rem;
   font-size: 0.9em;
+  border-radius: 0.25em;
 }
