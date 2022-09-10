@@ -54,6 +54,7 @@ button {
   font-size: 0.8em;
   border-radius: 100vmax;
   display: block;
+  user-select: none;
 }
 
 .color-select {
