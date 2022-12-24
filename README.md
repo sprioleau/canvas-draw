@@ -1,5 +1,7 @@
 # Canvas Draw
 
+![Social Card][social-card-url]
+
 A canvas drawing app by San'Quan Prioleau
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/74e6b4b7-9551-446c-b2b6-457e7b3af527/deploy-status)](https://app.netlify.com/sites/sp-draw/deploys)
@@ -47,5 +49,6 @@ Give a ⭐️ if you like this project!
 [linkedin]: https://www.linkedin.com/in/sanquanprioleau/
 
 <!-- Project Details -->
-[deployed-url]: https://sp-draw.netlify.app/
+[deployed-url]: https://sp-draw.netlify.app/ "Deployed URL"
+[social-card-url]: https://sp-draw.netlify.app/images/social-card.png "Social Card"
 
